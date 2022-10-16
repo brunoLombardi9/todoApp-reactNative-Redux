@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, StyleSheet, TextInput, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { tasksSlice } from "../store/tasks";
+import taskActions from "../store/tasks";
 
 const InputField = () => {
   const [enteredText, setEnteredText] = useState("");
@@ -13,7 +13,7 @@ const InputField = () => {
 
   function createTask() {
     if (enteredText !== "") {
-      dispatch(tasksSlice.actions.addTask(enteredText));
+      dispatch(taskActions.addTask(enteredText));
       setEnteredText("");
     }
   }
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     borderWidth: 1,
     marginRight: 10,
+    borderRadius: 5
   },
 });
 
