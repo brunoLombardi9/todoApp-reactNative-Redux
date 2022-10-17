@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Button, StyleSheet, TextInput, View } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import taskActions from "../store/tasks";
+import taskIdActions from "../store/taskId";
 
 const InputField = () => {
   const [enteredText, setEnteredText] = useState("");
+  const id = useSelector((state) => state.taskId);
   const dispatch = useDispatch();
 
   function inputHandler(text) {
@@ -13,7 +15,14 @@ const InputField = () => {
 
   function createTask() {
     if (enteredText !== "") {
-      dispatch(taskActions.addTask(enteredText));
+      dispatch(taskIdActions.newId());
+
+      const taskObject = {
+        id: id,
+        task: enteredText,
+      };
+
+      dispatch(taskActions.addTask(taskObject));
       setEnteredText("");
     }
   }
@@ -51,7 +60,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     borderWidth: 1,
     marginRight: 10,
-    borderRadius: 5
+    borderRadius: 5,
   },
 });
 

@@ -14,8 +14,8 @@ const TasksContainer = () => {
         renderItem={(itemData) => {
           return (
             <View style={styles.tasksContainer}>
-              <Text style={styles.task}>{itemData.item}</Text>
-              <Button style={styles.deleteButton} color= "red" title="X" />
+              <Text style={styles.task}>{itemData.item.task}</Text>
+              <Button style={styles.deleteButton} color="red" title="X" />
             </View>
           );
         }}
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   deleteButton: {
-      flex: 1,
-      alignContent: "center"
+    flex: 1,
+    alignContent: "center",
   },
 });
 
