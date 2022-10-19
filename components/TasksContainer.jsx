@@ -1,25 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, FlatList, View, Button } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
+import TaskList from "./TaskList"
 
 const TasksContainer = () => {
   const tasks = useSelector((state) => state.tasks);
 
   return (
     <View style={styles.container}>
-      <Text>Tareas:</Text>
-
-      <FlatList
-        data={tasks}
-        renderItem={(itemData) => {
-          return (
-            <View style={styles.tasksContainer}>
-              <Text style={styles.task}>{itemData.item.task}</Text>
-              <Button style={styles.deleteButton} color="red" title="X" />
-            </View>
-          );
-        }}
-      />
+      {tasks.length > 0 ?
+       <TaskList tasks={tasks}/> :
+       <Text style={styles.noTasksText}>No hay tareas agendadas</Text>}
     </View>
   );
 };
@@ -33,20 +24,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: "auto",
   },
-  tasksContainer: {
-    backgroundColor: "#2b2a33",
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 10,
-    flexDirection: "row",
-  },
-  task: {
-    color: "white",
-    flex: 1,
-  },
-  deleteButton: {
-    flex: 1,
-    alignContent: "center",
+  noTasksText: {
+    fontSize: 20,
+    textAlign: "center",
   },
 });
 

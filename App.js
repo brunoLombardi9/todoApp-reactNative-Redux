@@ -6,8 +6,8 @@ export default function App() {
   return (
     <AppContainer>
       <Provider store={store}>
-      <InputField />
-      <TasksContainer/>
+        <InputField />
+        <TasksContainer />
       </Provider>
     </AppContainer>
   );

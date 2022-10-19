@@ -10,6 +10,11 @@ export const tasksSlice = createSlice({
       state = [action.payload, ...state];
       return state;
     },
+    deleteTask(state, action) {
+      const newState = state.filter((task) => task.id !== action.payload);
+      state = [...newState];
+      return state;
+    },
   },
 });
 
